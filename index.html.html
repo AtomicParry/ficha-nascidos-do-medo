@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nascidos do Medo — Ficha de Personagem</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0d0b08;
+  --bg2:       #141210;
+  --bg3:       #1c1915;
+  --panel:     #1f1b16;
+  --panel2:    #252019;
+  --border:    #3a3020;
+  --border2:   #4a3e28;
+  --gold:      #c9a84c;
+  --gold2:     #e8c96a;
+  --gold3:     #f5e0a0;
+  --cream:     #e8dfc8;
+  --cream2:    #d4c8a8;
+  --red:       #8b1a1a;
+  --red2:      #b32020;
+  --red3:      #cc2222;
+  --blood:     #7a0e0e;
+  --green:     #1a4d1a;
+  --green2:    #2a6b2a;
+  --blue:      #1a2e4d;
+  --blue2:     #2a4a7a;
+  --purple:    #2e1a4d;
+  --purple2:   #4a2a7a;
+  --text:      #e8dfc8;
+  --text2:     #b8a888;
+  --text3:     #7a6a50;
+  --radius:    4px;
+  --shadow:    0 2px 8px rgba(0,0,0,0.6);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Crimson Text', serif;
+  font-size: 15px;
+  line-height: 1.4;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(201,168,76,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(139,26,26,0.06) 0%, transparent 60%);
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ─── TABS ─── */
+.tab-nav {
+  display: flex;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  gap: 4px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.tab-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 16px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--gold); }
+.tab-btn.active { color: var(--gold2); border-bottom-color: var(--gold); }
+.tab-page { display: none; padding: 20px 24px 40px; max-width: 1200px; margin: 0 auto; }
+.tab-page.active { display: block; }
+
+/* ─── HEADER ─── */
+.sheet-header {
+  background: linear-gradient(135deg, #1a0a0a 0%, var(--bg2) 40%, #0a1020 100%);
+  border: 1px solid var(--border2);
+  border-bottom: 2px solid var(--gold);
+  padding: 20px 32px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.sheet-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(201,168,76,0.015) 2px,
+    rgba(201,168,76,0.015) 4px
+  );
+  pointer-events: none;
+}
+.title-decor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.title-bracket {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: var(--gold);
+  opacity: 0.6;
+  line-height: 1;
+}
+.sheet-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--gold2);
+  text-shadow: 0 0 20px rgba(201,168,76,0.3);
+  text-transform: uppercase;
+}
+.xp-block {
+  text-align: right;
+}
+.xp-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+.xp-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+/* ─── SECTION HEADING ─── */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 14px;
+}
+.sec-head-line { flex: 1; height: 1px; background: var(--border2); }
+.sec-head-title {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.sec-head-paren { color: var(--gold); opacity: 0.4; font-size: 16px; font-family: 'Cinzel', serif; }
+
+/* ─── PANELS ─── */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.panel-dark {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* ─── FIELD ─── */
+.field-group { display: flex; flex-direction: column; gap: 3px; }
+.field-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.field-input {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Crimson Text', serif;
+  font-size: 15px;
+  padding: 6px 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.field-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+}
+.field-select {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  width: 100%;
+  cursor: pointer;
+}
+.field-select:focus { outline: none; border-color: var(--gold); }
+
+/* ─── STAT DISPLAY ─── */
+.stat-box {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 8px 6px;
+  position: relative;
+}
+.stat-box-label {
+  font-family: 'Cinzel', serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 4px;
+  display: block;
+}
+.stat-box-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold2);
+  display: block;
+}
+.stat-box-val.editable {
+  background: none;
+  border: none;
+  text-align: center;
+  width: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 20px;
+  color: var(--gold2);
+  cursor: text;
+}
+.stat-box-val.editable:focus { outline: none; color: var(--gold3); }
+
+/* ─── IDENTIFICATION ─── */
+.ident-grid {
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr;
+  gap: 12px;
+  padding: 16px;
+}
+.ident-left { display: flex; flex-direction: column; gap: 10px; }
+.ident-mid { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.ident-right { display: flex; flex-direction: column; gap: 10px; }
+
+/* ─── ATTRIBUTES ─── */
+.attrs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  padding: 16px;
+}
+.attr-box {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.attr-box:hover { border-color: var(--gold); background: var(--bg3); }
+.attr-name {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.attr-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 26px;
+  color: var(--cream);
+  background: none;
+  border: none;
+  text-align: center;
+  width: 100%;
+  cursor: text;
+}
+.attr-val:focus { outline: none; color: var(--gold3); }
+
+/* ─── ENERGIAS ─── */
+.energia-table { width: 100%; border-collapse: collapse; }
+.energia-table th, .energia-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid var(--border);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+}
+.energia-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--bg2);
+  color: var(--text3);
+}
+.en-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-align: left !important;
+  background: var(--panel) !important;
+}
+.en-vit { background: rgba(26,77,26,0.4); }
+.en-ener { background: rgba(26,46,77,0.4); }
+.en-sang { background: rgba(122,14,14,0.4); }
+.en-medo { background: rgba(46,26,77,0.4); }
+.en-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  background: none;
+  border: none;
+  text-align: center;
+  width: 60px;
+  color: inherit;
+  cursor: text;
+}
+.en-val:focus { outline: none; }
+.vit-val { color: #5cb85c; }
+.ener-val { color: #5b8dd9; }
+.sang-val { color: #cc4444; }
+.medo-val { color: #9966cc; }
+
+/* ─── BAR ─── */
+.bar-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.bar-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  width: 58px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.bar-track {
+  flex: 1;
+  height: 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.bar-vit .bar-fill { background: linear-gradient(90deg, #1a4d1a, #3a8a3a); }
+.bar-ener .bar-fill { background: linear-gradient(90deg, #1a2e4d, #3a5a9a); }
+.bar-sang .bar-fill { background: linear-gradient(90deg, #4d1a1a, #aa3333); }
+.bar-medo .bar-fill { background: linear-gradient(90deg, #2e1a4d, #6a3aaa); }
+
+/* ─── COMPETÊNCIAS ─── */
+.comp-table { width: 100%; border-collapse: collapse; }
+.comp-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--bg2);
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.comp-table td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text);
+}
+.comp-table tr:hover td { background: rgba(201,168,76,0.04); }
+.comp-name {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+.comp-attr-badge {
+  display: inline-block;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+.comp-input {
+  background: none;
+  border: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: var(--cream);
+  text-align: center;
+  width: 50px;
+}
+.comp-input:focus { outline: none; color: var(--gold3); border-bottom: 1px solid var(--gold); }
+.comp-total {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold2);
+  text-align: center;
+}
+
+/* ─── RADAR ─── */
+#radar-svg { display: block; }
+
+/* ─── DESLOCAMENTO ─── */
+.desl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.desl-box {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 8px;
+}
+.desl-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 2px;
+}
+.desl-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 20px;
+  color: var(--gold2);
+}
+
+/* ─── SAÚDE ─── */
+.health-layout {
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  gap: 16px;
+  align-items: start;
+}
+.health-col { display: flex; flex-direction: column; gap: 10px; }
+.body-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.body-section.injured {
+  border-color: var(--red2);
+  box-shadow: 0 0 12px rgba(179,32,32,0.25), inset 0 0 8px rgba(139,26,26,0.15);
+}
+.body-sec-title {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.body-section.injured .body-sec-title { color: #cc5555; }
+.injury-badge {
+  display: none;
+  position: absolute;
+  top: 5px; right: 5px;
+  background: var(--red2);
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  border-radius: 2px;
+}
+.body-section.injured .injury-badge { display: block; }
+.cond-select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Crimson Text', serif;
+  font-size: 13px;
+  padding: 4px 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+.cond-select:focus { outline: none; border-color: var(--gold); }
+.body-section.injured .cond-select { border-color: var(--red2); }
+.arm-label-s {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: center;
+  margin-bottom: 3px;
+}
+.arm-val-s {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  color: var(--cream);
+  text-align: center;
+  width: 100%;
+}
+.arm-val-s:focus { outline: none; border-bottom-color: var(--gold); }
+
+/* SVG body */
+.body-center { display: flex; align-items: center; justify-content: center; }
+.body-svg-wrap { width: 100%; max-width: 200px; position: relative; }
+.body-svg-wrap svg { width: 100%; height: auto; }
+
+/* ─── ARMADURA CENTRAL ─── */
+.armor-central {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.armor-title {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.armor-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding: 5px 0;
+  font-size: 13px;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.armor-stat-row span:last-child {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--gold2);
+  font-size: 15px;
+}
+.armor-input {
+  background: none;
+  border: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 15px;
+  color: var(--gold2);
+  text-align: right;
+  width: 50px;
+}
+.armor-input:focus { outline: none; border-bottom: 1px solid var(--gold); }
+
+/* ─── QUALIDADES/DEFEITOS ─── */
+.qd-section { margin-bottom: 8px; }
+.qd-head {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 6px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.qd-item {
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: var(--text2);
+  cursor: text;
+  transition: background 0.2s;
+}
+.qd-item:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.qd-item:hover { background: rgba(201,168,76,0.04); }
+.qd-item[contenteditable]:focus { outline: none; color: var(--text); background: rgba(201,168,76,0.06); }
+
+/* ─── TALENTOS ─── */
+.talento-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+.talento-row:first-child { border-top: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0; }
+.talento-row:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.talento-select {
+  background: var(--bg2);
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Crimson Text', serif;
+  font-size: 13px;
+  padding: 6px 8px;
+}
+.talento-desc {
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text3);
+  font-style: italic;
+}
+
+/* ─── ARMAS ─── */
+.weapons-table { width: 100%; border-collapse: collapse; }
+.weapons-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--bg2);
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.weapons-table td {
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  color: var(--text);
+}
+.weapons-table tr:hover td { background: rgba(201,168,76,0.03); }
+.w-input {
+  background: none;
+  border: none;
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+}
+.w-input:focus { outline: none; border-bottom: 1px solid var(--gold); }
+.w-select {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: 'Crimson Text', serif;
+  font-size: 13px;
+  width: 100%;
+}
+
+/* ─── INVENTÁRIO ─── */
+.inv-table { width: 100%; border-collapse: collapse; }
+.inv-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--bg2);
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.inv-table td { border: 1px solid var(--border); padding: 5px 8px; }
+.inv-table tr:hover td { background: rgba(201,168,76,0.03); }
+.i-input {
+  background: none; border: none;
+  font-family: 'Crimson Text', serif;
+  font-size: 14px; color: var(--text); width: 100%;
+}
+.i-input:focus { outline: none; }
+
+/* ─── DINHEIRO ─── */
+.dinheiro-box {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+.dinheiro-symbol {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+.dinheiro-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 28px;
+  color: var(--gold2);
+  background: none;
+  border: none;
+  text-align: center;
+  width: 100%;
+}
+.dinheiro-val:focus { outline: none; }
+
+/* ─── HABILIDADES ─── */
+.hab-table { width: 100%; border-collapse: collapse; }
+.hab-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--bg2);
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.hab-table td { border: 1px solid var(--border); padding: 6px 8px; }
+.hab-table tr:hover td { background: rgba(201,168,76,0.03); }
+.h-input { background: none; border: none; font-family: 'Crimson Text', serif; font-size: 14px; color: var(--text); width: 100%; }
+.h-input:focus { outline: none; }
+
+/* ─── LAYOUT HELPERS ─── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.gap-sm { gap: 8px; }
+.mt { margin-top: 16px; }
+.mt-sm { margin-top: 8px; }
+
+/* ─── MISC ─── */
+.text-muted { color: var(--text3); font-style: italic; }
+.mono { font-family: 'Share Tech Mono', monospace; }
+.cinzel { font-family: 'Cinzel', serif; }
+.gold { color: var(--gold2); }
+.small { font-size: 12px; }
+
+/* ─── SAVE/SHARE BAR ─── */
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 6px 24px;
+  position: sticky;
+  top: 45px;
+  z-index: 99;
+}
+.action-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text2);
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.action-btn:hover { color: var(--gold); border-color: var(--gold); }
+.action-btn.primary { color: var(--gold); border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.action-btn.primary:hover { background: rgba(201,168,76,0.16); }
+.action-btn.danger { color: #cc5555; border-color: #6a2222; }
+.action-btn.danger:hover { border-color: #cc5555; background: rgba(180,30,30,0.1); }
+.save-status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  margin-left: 4px;
+  transition: color 0.3s;
+}
+.save-status.ok { color: #5cb85c; }
+.save-status.err { color: #cc4444; }
+.action-sep { flex: 1; }
+.char-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.char-select {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  cursor: pointer;
+  max-width: 160px;
+}
+.char-select:focus { outline: none; border-color: var(--gold); }
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, opacity 0.3s;
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ─── MODAL ─── */
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-bg.show { display: flex; }
+.modal {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+}
+.modal-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.modal-url {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--text2);
+  word-break: break-all;
+  margin-bottom: 14px;
+  user-select: all;
+}
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.modal-note {
+  font-size: 12px;
+  color: var(--text3);
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+/* ─── PRINT ─── */
+@media print {
+  .tab-nav, .action-bar { display: none; }
+  .tab-page { display: block !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="sheet-header">
+  <div class="title-decor">
+    <span class="title-bracket">『</span>
+    <span class="title-bracket" style="opacity:0.3">—</span>
+    <span class="title-bracket" style="font-size:18px;opacity:0.3">[</span>
+    <span class="sheet-title">Nascidos do Medo</span>
+    <span class="title-bracket" style="font-size:18px;opacity:0.3">]</span>
+    <span class="title-bracket" style="opacity:0.3">—</span>
+    <span class="title-bracket">』</span>
+  </div>
+  <div class="xp-block">
+    <div class="xp-label">Experiência</div>
+    <input class="dinheiro-val" id="xp-total" type="number" value="0" min="0" style="font-size:22px;color:var(--gold);width:80px;">
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('ident')">Identidade</button>
+  <button class="tab-btn" onclick="showTab('comp')">Competências</button>
+  <button class="tab-btn" onclick="showTab('saude')">Saúde</button>
+  <button class="tab-btn" onclick="showTab('catalog')">Catálogo</button>
+  <button class="tab-btn" onclick="showTab('hab')">Habilidades</button>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+  <div class="char-switcher">
+    <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;">Ficha:</span>
+    <select class="char-select" id="char-select" onchange="switchChar(this.value)"></select>
+    <button class="action-btn" onclick="newChar()">+ Nova</button>
+    <button class="action-btn danger" onclick="deleteChar()">Apagar</button>
+  </div>
+  <div class="action-sep"></div>
+  <span class="save-status" id="save-status">—</span>
+  <button class="action-btn primary" onclick="saveNow()">&#128190; Salvar</button>
+  <button class="action-btn" onclick="openShareModal()">&#128279; Compartilhar</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- SHARE MODAL -->
+<div class="modal-bg" id="share-modal" onclick="if(event.target===this)closeShareModal()">
+  <div class="modal">
+    <div class="modal-title">Compartilhar Ficha</div>
+    <p class="modal-note">Copie o link abaixo. Qualquer pessoa que abrir este link vera a ficha exatamente como esta agora. Gere um novo link sempre que quiser compartilhar uma versao atualizada.</p>
+    <div class="modal-url" id="share-url">Gerando link...</div>
+    <div class="modal-actions">
+      <button class="action-btn" onclick="closeShareModal()">Fechar</button>
+      <button class="action-btn primary" onclick="copyShareUrl()">Copiar Link</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TAB 1: IDENTIDADE -->
+<div class="tab-page active" id="tab-ident">
+
+  <!-- IDENTIFICAÇÃO -->
+  <div class="sec-head">
+    <span class="sec-head-paren">[</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-title">Identificação</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-paren">]</span>
+  </div>
+
+  <div class="panel">
+    <div class="ident-grid">
+      <div class="ident-left">
+        <div class="field-group">
+          <label class="field-label">Nome</label>
+          <input class="field-input" type="text" placeholder="Nome do personagem...">
+        </div>
+        <div class="grid-2 gap-sm">
+          <div class="field-group">
+            <label class="field-label">Origem</label>
+            <select class="field-select">
+              <option>Humano</option>
+              <option>Aberrante</option>
+              <option>Marcado</option>
+              <option>Vazio</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Idade</label>
+            <input class="field-input" type="number" placeholder="—" min="1">
+          </div>
+        </div>
+      </div>
+      <div class="ident-mid" style="padding-top:8px;">
+        <div style="width:60px;height:60px;border:2px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg2);">
+          <span style="font-family:'Cinzel',serif;font-size:22px;color:var(--border2);">✦</span>
+        </div>
+      </div>
+      <div class="ident-right">
+        <div class="field-group">
+          <label class="field-label">Jogador</label>
+          <input class="field-input" type="text" placeholder="—">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Ocupação</label>
+          <input class="field-input" type="text" placeholder="—">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Patente</label>
+          <input class="field-input" type="text" placeholder="—">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATRIBUTOS -->
+  <div class="sec-head">
+    <span class="sec-head-paren">(</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-title">Atributos</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-paren">)</span>
+  </div>
+
+  <div class="panel">
+    <div class="attrs-grid">
+      <div class="attr-box">
+        <div class="attr-name">Agilidade</div>
+        <input class="attr-val" id="attr-agil" type="number" value="1" min="1" max="20" oninput="recalc()">
+      </div>
+      <div class="attr-box">
+        <div class="attr-name">Constituição</div>
+        <input class="attr-val" id="attr-cons" type="number" value="1" min="1" max="20" oninput="recalc()">
+      </div>
+      <div class="attr-box">
+        <div class="attr-name">Conhecimento</div>
+        <input class="attr-val" id="attr-conh" type="number" value="1" min="1" max="20" oninput="recalc()">
+      </div>
+      <div class="attr-box">
+        <div class="attr-name">Força</div>
+        <input class="attr-val" id="attr-for" type="number" value="1" min="1" max="20" oninput="recalc()">
+      </div>
+      <div class="attr-box">
+        <div class="attr-name">Intelecto</div>
+        <input class="attr-val" id="attr-int" type="number" value="1" min="1" max="20" oninput="recalc()">
+      </div>
+    </div>
+  </div>
+
+  <!-- ENERGIAS -->
+  <div class="sec-head">
+    <span class="sec-head-paren">〖</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-title">Energias</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-paren">〗</span>
+  </div>
+
+  <div class="panel" style="padding:16px;">
+    <table class="energia-table">
+      <thead>
+        <tr>
+          <th style="width:90px;text-align:left;"></th>
+          <th>Vitalidade</th>
+          <th>Energia</th>
+          <th>Sangue</th>
+          <th>Medo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="en-label">Total</td>
+          <td class="en-vit"><span class="vit-val" id="vit-total" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">4</span></td>
+          <td class="en-ener"><span class="ener-val" id="ener-total" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">7</span></td>
+          <td class="en-sang"><span class="sang-val" id="sang-total" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">8</span></td>
+          <td class="en-medo"><span class="medo-val" id="medo-total" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">10</span></td>
+        </tr>
+        <tr>
+          <td class="en-label">Perdido</td>
+          <td class="en-vit"><input class="en-val vit-val" id="vit-perd" type="number" value="0" min="0" oninput="recalcAtual()"></td>
+          <td class="en-ener"><input class="en-val ener-val" id="ener-perd" type="number" value="0" min="0" oninput="recalcAtual()"></td>
+          <td class="en-sang"><input class="en-val sang-val" id="sang-perd" type="number" value="0" min="0" oninput="recalcAtual()"></td>
+          <td class="en-medo"><input class="en-val medo-val" id="medo-perd" type="number" value="0" min="0" oninput="recalcAtual()"></td>
+        </tr>
+        <tr>
+          <td class="en-label">Atual</td>
+          <td class="en-vit"><span class="vit-val" id="vit-atual" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">4</span></td>
+          <td class="en-ener"><span class="ener-val" id="ener-atual" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">7</span></td>
+          <td class="en-sang"><span class="sang-val" id="sang-atual" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">8</span></td>
+          <td class="en-medo"><span class="medo-val" id="medo-atual" style="font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;">10</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- BARRAS -->
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px;">
+      <div class="bar-row bar-vit">
+        <span class="bar-label">Vitalidade</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-vit" style="width:100%;"></div></div>
+      </div>
+      <div class="bar-row bar-ener">
+        <span class="bar-label">Energia</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-ener" style="width:100%;"></div></div>
+      </div>
+      <div class="bar-row bar-sang">
+        <span class="bar-label">Sangue</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-sang" style="width:100%;"></div></div>
+      </div>
+      <div class="bar-row bar-medo">
+        <span class="bar-label">Medo</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-medo" style="width:100%;"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TAB 2: COMPETÊNCIAS -->
+<div class="tab-page" id="tab-comp">
+  <div class="grid-2" style="gap:20px;align-items:start;">
+
+    <!-- COMPETÊNCIAS TABLE -->
+    <div>
+      <div class="sec-head">
+        <span class="sec-head-paren">(</span>
+        <div class="sec-head-line"></div>
+        <span class="sec-head-title">Competências</span>
+        <div class="sec-head-line"></div>
+        <span class="sec-head-paren">)</span>
+      </div>
+      <div class="panel">
+        <table class="comp-table" id="comp-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;width:140px;">Nome</th>
+              <th>Atributo</th>
+              <th>Valor</th>
+              <th>Modif.</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="comp-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RIGHT: RADAR + DESL + INIC -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-head-line"></div>
+        <span class="sec-head-title">Atributos</span>
+        <div class="sec-head-line"></div>
+      </div>
+      <div class="panel" style="padding:16px;display:flex;justify-content:center;">
+        <svg id="radar-svg" viewBox="0 0 260 260" width="260" height="260">
+          <defs>
+            <style>
+              .r-grid { fill:none; stroke:#2a2418; stroke-width:1; }
+              .r-axis { stroke:#3a3020; stroke-width:1; }
+              .r-poly { fill:rgba(201,168,76,0.15); stroke:#c9a84c; stroke-width:2; }
+              .r-label { font-family:'Cinzel',serif; font-size:10px; fill:#7a6a50; letter-spacing:1px; }
+            </style>
+          </defs>
+          <!-- grid polygons -->
+          <polygon class="r-grid" id="rg8" points="130,50 188,84 188,176 130,210 72,176 72,84"/>
+          <polygon class="r-grid" id="rg6" points="130,68 174,92 174,168 130,192 86,168 86,92"/>
+          <polygon class="r-grid" id="rg4" points="130,86 160,100 160,160 130,174 100,160 100,100"/>
+          <polygon class="r-grid" id="rg2" points="130,104 146,108 146,152 130,156 114,152 114,108"/>
+          <!-- axes -->
+          <line class="r-axis" x1="130" y1="130" x2="130" y2="46"/>
+          <line class="r-axis" x1="130" y1="130" x2="190" y2="82"/>
+          <line class="r-axis" x1="130" y1="130" x2="190" y2="178"/>
+          <line class="r-axis" x1="130" y1="130" x2="130" y2="214"/>
+          <line class="r-axis" x1="130" y1="130" x2="70" y2="178"/>
+          <line class="r-axis" x1="130" y1="130" x2="70" y2="82"/>
+          <!-- data polygon -->
+          <polygon class="r-poly" id="radar-poly" points="130,104 146,108 146,152 130,156 114,152 114,108"/>
+          <!-- labels -->
+          <text class="r-label" x="130" y="36" text-anchor="middle">AGILIDADE</text>
+          <text class="r-label" x="202" y="80" text-anchor="start">CONSTITUIÇÃO</text>
+          <text class="r-label" x="202" y="190" text-anchor="start">CONHECIMENTO</text>
+          <text class="r-label" x="130" y="228" text-anchor="middle">FORÇA</text>
+          <text class="r-label" x="58" y="190" text-anchor="end">INTELECTO</text>
+          <!-- ticks -->
+          <text style="font-family:'Share Tech Mono',monospace;font-size:9px;fill:#3a3020;" x="132" y="52" text-anchor="start">8</text>
+          <text style="font-family:'Share Tech Mono',monospace;font-size:9px;fill:#3a3020;" x="132" y="70" text-anchor="start">6</text>
+          <text style="font-family:'Share Tech Mono',monospace;font-size:9px;fill:#3a3020;" x="132" y="88" text-anchor="start">4</text>
+          <text style="font-family:'Share Tech Mono',monospace;font-size:9px;fill:#3a3020;" x="132" y="106" text-anchor="start">2</text>
+          <!-- dot center -->
+          <circle cx="130" cy="130" r="3" fill="#3a3020"/>
+        </svg>
+      </div>
+
+      <div class="sec-head mt">
+        <div class="sec-head-line"></div>
+        <span class="sec-head-title">Deslocamento</span>
+        <div class="sec-head-line"></div>
+      </div>
+      <div class="panel" style="padding:12px;">
+        <div class="desl-grid">
+          <div class="desl-box">
+            <div class="desl-val" id="desl-1">10</div>
+            <div class="desl-sub">1 Ação</div>
+          </div>
+          <div class="desl-box">
+            <div class="desl-val" id="desl-2">20</div>
+            <div class="desl-sub">2 Ações</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:6px;">Iniciativa</div>
+          <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);text-align:center;padding:8px;">
+            <span class="desl-val" id="inic-val">1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TAB 3: SAÚDE -->
+<div class="tab-page" id="tab-saude">
+  <div class="grid-2" style="gap:20px;align-items:start;">
+
+    <!-- QUALIDADES E DEFEITOS -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-head-line"></div>
+        <span class="sec-head-title">Qualidades &amp; Defeitos</span>
+        <div class="sec-head-line"></div>
+      </div>
+
+      <div class="qd-section">
+        <div class="qd-head">Qualidades</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+      </div>
+
+      <div class="qd-section mt">
+        <div class="qd-head">Defeitos</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+        <div class="qd-item" contenteditable="true">Nenhum</div>
+      </div>
+
+      <div class="sec-head mt">
+        <div class="sec-head-line"></div>
+        <span class="sec-head-title">Aptidões &amp; Proficiências</span>
+        <div class="sec-head-line"></div>
+      </div>
+
+      <div class="qd-head" style="border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--border);">Talentos</div>
+      <div id="talentos-list">
+        <div class="talento-row">
+          <select class="talento-select"><option>Nenhum</option><option>Atletismo</option><option>Combate</option><option>Magia</option><option>Furtividade</option></select>
+          <span class="talento-desc">Nenhum talento</span>
+        </div>
+        <div class="talento-row">
+          <select class="talento-select"><option>Nenhum</option><option>Atletismo</option><option>Combate</option><option>Magia</option><option>Furtividade</option></select>
+          <span class="talento-desc">Nenhum talento</span>
+        </div>
+        <div class="talento-row">
+          <select class="talento-select"><option>Nenhum</option><option>Atletismo</option><option>Combate</option><option>Magia</option><option>Furtividade</option></select>
+          <span class="talento-desc">Nenhum talento</span>
+        </div>
+        <div class="talento-row">
+          <select class="talento-select"><option>Nenhum</option><option>Atletismo</option><option>Combate</option><option>Magia</option><option>Furtividade</option></select>
+          <span class="talento-desc">Nenhum talento</span>
+        </div>
+        <div class="talento-row" style="border-radius:0 0 var(--radius) var(--radius);">
+          <select class="talento-select"><option>Nenhum</option><option>Atletismo</option><option>Combate</option><option>Magia</option><option>Furtividade</option></select>
+          <span class="talento-desc">Nenhum talento</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAÚDE DO PERSONAGEM -->
+    <div>
+      <div class="sec-head">
+        <span class="sec-head-paren">✦</span>
+        <div class="sec-head-line"></div>
+        <span class="sec-head-title">Saúde do Personagem</span>
+        <div class="sec-head-line"></div>
+        <span class="sec-head-paren">✦</span>
+      </div>
+
+      <!-- ARMADURA CENTRAL -->
+      <div class="armor-central">
+        <div class="armor-title">Armadura Geral</div>
+        <div class="armor-stat-row">
+          <span>Defesa</span>
+          <input class="armor-input" type="number" value="0" min="0">
+        </div>
+        <div class="armor-stat-row">
+          <span>HP</span>
+          <input class="armor-input" type="number" value="0" min="0">
+        </div>
+      </div>
+
+      <div class="health-layout">
+        <!-- LEFT COL -->
+        <div class="health-col">
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);">Pescoço</div>
+          <div class="body-section" id="sec-pescoco">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('pescoco',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);margin-top:6px;">Br. Esquerdo</div>
+          <div class="body-section" id="sec-braco-esq">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('braco-esq',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);margin-top:6px;">Abdômen</div>
+          <div class="body-section" id="sec-abdomen">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('abdomen',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);margin-top:6px;">P. Esquerda</div>
+          <div class="body-section" id="sec-perna-esq">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('perna-esq',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+        </div>
+
+        <!-- CENTER: BODY SVG -->
+        <div class="body-center" style="padding-top:8px;">
+          <div class="body-svg-wrap">
+            <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow-red2">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- BODY PARTS -->
+              <ellipse id="bp-cabeca" cx="100" cy="38" rx="28" ry="34" fill="#1c1a16" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="cabeca"/>
+              <rect id="bp-pescoco" x="90" y="68" width="20" height="18" rx="3" fill="#181614" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="pescoco"/>
+              <path id="bp-peito" d="M62,86 Q56,90 54,102 L50,180 Q50,190 58,193 L142,193 Q150,190 150,180 L146,102 Q144,90 138,86 Z" fill="#161412" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="peito"/>
+              <path id="bp-abdomen" d="M50,180 L150,180 L152,240 Q152,254 144,257 L56,257 Q48,254 48,240 Z" fill="#141210" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="abdomen"/>
+              <!-- ARMS -->
+              <path id="bp-braco-esq" d="M62,86 Q46,92 40,108 L28,185 Q26,196 30,202 L44,202 Q50,199 52,189 L60,116 Q62,104 64,96 Z" fill="#141210" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="braco-esq"/>
+              <path d="M30,202 L44,202 L48,268 Q48,278 42,280 L30,280 Q24,278 24,268 Z" fill="#121010" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="braco-esq"/>
+              <ellipse cx="36" cy="290" rx="12" ry="16" fill="#0e0c0a" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="braco-esq"/>
+              <path id="bp-braco-dir" d="M138,86 Q154,92 160,108 L172,185 Q174,196 170,202 L156,202 Q150,199 148,189 L140,116 Q138,104 136,96 Z" fill="#141210" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="braco-dir"/>
+              <path d="M170,202 L156,202 L152,268 Q152,278 158,280 L170,280 Q176,278 176,268 Z" fill="#121010" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="braco-dir"/>
+              <ellipse cx="164" cy="290" rx="12" ry="16" fill="#0e0c0a" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="braco-dir"/>
+              <!-- HIPS -->
+              <path d="M48,240 L152,240 L155,275 Q155,285 148,287 L52,287 Q45,285 45,275 Z" fill="#121010" stroke="#3a3020" stroke-width="1"/>
+              <!-- LEGS -->
+              <path id="bp-perna-esq" d="M52,275 L98,275 L96,365 Q96,378 90,381 L62,381 Q56,378 56,365 Z" fill="#121010" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="perna-esq"/>
+              <path d="M56,363 L90,363 L88,430 Q88,442 82,444 L64,444 Q58,442 58,430 Z" fill="#0e0c0a" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="perna-esq"/>
+              <path d="M55,436 L88,436 L92,455 L50,455 Z" fill="#0c0a08" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="perna-esq"/>
+              <path id="bp-perna-dir" d="M102,275 L148,275 L144,365 Q144,378 138,381 L110,381 Q104,378 104,365 Z" fill="#121010" stroke="#3a3020" stroke-width="1.5" class="bpart" data-part="perna-dir"/>
+              <path d="M110,363 L144,363 L142,430 Q142,442 136,444 L118,444 Q112,442 112,430 Z" fill="#0e0c0a" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="perna-dir"/>
+              <path d="M112,436 L145,436 L150,455 L108,455 Z" fill="#0c0a08" stroke="#3a3020" stroke-width="1.5" class="bpart bpart-sub" data-part="perna-dir"/>
+              <!-- FACE -->
+              <ellipse cx="90" cy="34" rx="3.5" ry="4.5" fill="#2a2618" stroke="#4a4030" stroke-width="0.5"/>
+              <ellipse cx="110" cy="34" rx="3.5" ry="4.5" fill="#2a2618" stroke="#4a4030" stroke-width="0.5"/>
+              <path d="M93,50 Q100,56 107,50" fill="none" stroke="#4a4030" stroke-width="0.8"/>
+              <!-- MUSCLE LINES -->
+              <line x1="100" y1="95" x2="100" y2="190" stroke="#2a2418" stroke-width="0.8"/>
+              <path d="M68,118 Q100,130 132,118" fill="none" stroke="#2a2418" stroke-width="0.8"/>
+              <path d="M64,143 Q100,155 136,143" fill="none" stroke="#2a2418" stroke-width="0.8"/>
+              <path d="M63,167" fill="none" stroke="#2a2418" stroke-width="0.8"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- RIGHT COL -->
+        <div class="health-col">
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);">Cabeça</div>
+          <div class="body-section" id="sec-cabeca">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('cabeca',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);margin-top:6px;">Br. Direito</div>
+          <div class="body-section" id="sec-braco-dir">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('braco-dir',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);margin-top:6px;">Peito</div>
+          <div class="body-section" id="sec-peito">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('peito',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+
+          <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center;padding:4px;border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);margin-top:6px;">P. Direita</div>
+          <div class="body-section" id="sec-perna-dir">
+            <span class="injury-badge">Ferido</span>
+            <div class="body-sec-title">Condição</div>
+            <select class="cond-select" onchange="updateInjury('perna-dir',this.value)">
+              <option>Nenhum</option><option>Cortado</option><option>Machucado</option><option>Fraturado</option><option>Mutilado</option>
+            </select>
+            <div class="arm-label-s">Armadura</div>
+            <input class="arm-val-s" type="number" value="0" min="0">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TAB 4: CATÁLOGO -->
+<div class="tab-page" id="tab-catalog">
+  <div class="sec-head">
+    <span class="sec-head-paren">『</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-title">Catálogo de Personagem</span>
+    <div class="sec-head-line"></div>
+    <span class="sec-head-paren">』</span>
+  </div>
+
+  <!-- ARMAS -->
+  <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:var(--bg2);border:1px solid var(--border);padding:8px 14px;border-radius:var(--radius) var(--radius) 0 0;border-bottom:none;margin-top:16px;">Armas</div>
+  <div class="panel" style="border-radius:0 0 var(--radius) var(--radius);">
+    <table class="weapons-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:160px;">Nome</th>
+          <th style="width:60px;">Dano</th>
+          <th style="width:60px;">Bônus</th>
+          <th style="width:70px;">Crítico</th>
+          <th style="width:120px;">Tipo</th>
+          <th style="width:80px;">Alcance</th>
+          <th>Descrição</th>
+          <th style="width:60px;">Peso</th>
+        </tr>
+      </thead>
+      <tbody id="weapons-body">
+        <tr>
+          <td><input class="w-input" type="text" value="Punho Desarmado"></td>
+          <td style="text-align:center;"><input class="w-input" type="number" value="1" style="width:40px;text-align:center;"></td>
+          <td style="text-align:center;"><input class="w-input" type="text" value="+0" style="width:40px;text-align:center;"></td>
+          <td style="text-align:center;"><input class="w-input" type="number" value="8" style="width:45px;text-align:center;"></td>
+          <td><select class="w-select"><option>Contundente</option><option>Cortante</option><option>Perfurante</option><option>Fogo</option><option>Gelo</option></select></td>
+          <td style="text-align:center;"><input class="w-input" type="text" value="1m" style="width:55px;text-align:center;"></td>
+          <td><input class="w-input" type="text" placeholder="—"></td>
+          <td style="text-align:center;"><input class="w-input" type="number" value="0" style="width:40px;text-align:center;"></td>
+        </tr>
+        <tr>
+          <td><input class="w-input" type="text" placeholder="—"></td>
+          <td><input class="w-input" type="number" value="0" style="width:40px;text-align:center;"></td>
+          <td><input class="w-input" type="text" value="+0" style="width:40px;text-align:center;"></td>
+          <td><input class="w-input" type="number" value="0" style="width:45px;text-align:center;"></td>
+          <td><select class="w-select"><option>—</option><option>Contundente</option><option>Cortante</option><option>Perfurante</option></select></td>
+          <td><input class="w-input" type="text" placeholder="—" style="width:55px;"></td>
+          <td><input class="w-input" type="text" placeholder="—"></td>
+          <td><input class="w-input" type="number" value="0" style="width:40px;text-align:center;"></td>
+        </tr>
+        <tr>
+          <td><input class="w-input" type="text" placeholder="—"></td>
+          <td><input class="w-input" type="number" value="0" style="width:40px;text-align:center;"></td>
+          <td><input class="w-input" type="text" value="+0" style="width:40px;text-align:center;"></td>
+          <td><input class="w-input" type="number" value="0" style="width:45px;text-align:center;"></td>
+          <td><select class="w-select"><option>—</option><option>Contundente</option><option>Cortante</option><option>Perfurante</option></select></td>
+          <td><input class="w-input" type="text" placeholder="—" style="width:55px;"></td>
+          <td><input class="w-input" type="text" placeholder="—"></td>
+          <td><input class="w-input" type="number" value="0" style="width:40px;text-align:center;"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INVENTÁRIO -->
+  <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:var(--bg2);border:1px solid var(--border);padding:8px 14px;border-radius:var(--radius) var(--radius) 0 0;border-bottom:none;margin-top:20px;">Inventário</div>
+  <div class="panel" style="border-radius:0 0 var(--radius) var(--radius);">
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:160px;">Nome</th>
+          <th style="width:70px;">Quant.</th>
+          <th>Descrição</th>
+          <th style="width:60px;">Peso</th>
+        </tr>
+      </thead>
+      <tbody id="inv-body"></tbody>
+    </table>
+  </div>
+
+  <!-- DINHEIRO + ESPAÇOS -->
+  <div class="grid-2 mt" style="gap:16px;align-items:start;">
+    <div class="dinheiro-box">
+      <div class="dinheiro-symbol">Dinheiro (¥)</div>
+      <input class="dinheiro-val" id="dinheiro" type="number" value="0" min="0">
+    </div>
+    <div class="panel" style="padding:14px;">
+      <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:10px;">Espaços de Inventário</div>
+      <div class="grid-2 gap-sm">
+        <div class="stat-box">
+          <span class="stat-box-label">Máximo</span>
+          <input class="stat-box-val editable" type="number" value="2" min="0">
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-label">Atual</span>
+          <input class="stat-box-val editable" type="number" value="0" min="0">
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin-top:10px;padding-top:10px;text-align:center;">
+        <span style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;">Total</span>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:20px;color:var(--gold2);margin-top:2px;">0</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TAB 5: HABILIDADES -->
+<div class="tab-page" id="tab-hab">
+  <div class="sec-head">
+    <div class="sec-head-line"></div>
+    <span class="sec-head-title">Habilidades</span>
+    <div class="sec-head-line"></div>
+  </div>
+  <div class="panel">
+    <table class="hab-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:180px;">Nome</th>
+          <th style="width:80px;">Custo</th>
+          <th style="width:80px;">Medo</th>
+          <th style="width:100px;">Resfri. (rodadas)</th>
+          <th>Descrição / Efeito</th>
+        </tr>
+      </thead>
+      <tbody id="hab-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+/* ── TAB SWITCHING ── */
+function showTab(id) {
+  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick').includes("'"+id+"'")) b.classList.add('active');
+  });
+}
+
+/* ── COMPETÊNCIAS DATA ── */
+const competencias = [
+  { nome: 'Atletismo',       attr: 'AGIL',     id: 'agil' },
+  { nome: 'Combate Corp.',   attr: 'FOR',      id: 'for' },
+  { nome: 'Combate à Dis.', attr: 'DES/POD',  id: 'agil' },
+  { nome: 'Entendimento',    attr: 'INT',      id: 'int' },
+  { nome: 'Defesa',          attr: 'CONS',     id: 'cons' },
+  { nome: 'Enganar',         attr: 'INT',      id: 'int' },
+  { nome: 'Furtividade',     attr: 'AGIL',     id: 'agil' },
+  { nome: 'Investigar',      attr: 'INT',      id: 'int' },
+  { nome: 'Lábia',           attr: 'CONH',     id: 'conh' },
+  { nome: 'Medicina',        attr: 'CONH',     id: 'conh' },
+  { nome: 'Psicológico',     attr: 'INT',      id: 'int' },
+  { nome: 'Reflexos',        attr: 'AGIL',     id: 'agil' },
+];
+const tbody = document.getElementById('comp-body');
+competencias.forEach((c,i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><span class="comp-name">${c.nome}</span></td>
+    <td style="text-align:center;"><span class="comp-attr-badge">${c.attr}</span></td>
+    <td style="text-align:center;"><input class="comp-input" type="number" value="0" min="0" data-idx="${i}" oninput="updateComp(${i})"></td>
+    <td style="text-align:center;"><input class="comp-input" type="number" value="0" min="0" data-modif="${i}" oninput="updateComp(${i})"></td>
+    <td><div class="comp-total" id="comp-total-${i}">0</div></td>
+  `;
+  tbody.appendChild(tr);
+});
+
+function getAttrVal(id) {
+  const el = document.getElementById('attr-' + id);
+  return el ? parseInt(el.value)||0 : 0;
+}
+function updateComp(i) {
+  const row = tbody.rows[i];
+  const val = parseInt(row.querySelector('[data-idx]').value)||0;
+  const mod = parseInt(row.querySelector('[data-modif]').value)||0;
+  const attrId = competencias[i].id;
+  const attrVal = getAttrVal(attrId);
+  const total = val + mod + attrVal;
+  document.getElementById('comp-total-'+i).textContent = total;
+}
+function updateAllComps() { competencias.forEach((_,i) => updateComp(i)); }
+
+/* ── ENERGIA CALC ── */
+function recalc() {
+  const for_ = parseInt(document.getElementById('attr-for').value)||0;
+  const cons = parseInt(document.getElementById('attr-cons').value)||0;
+  const agil = parseInt(document.getElementById('attr-agil').value)||0;
+  const int_ = parseInt(document.getElementById('attr-int').value)||0;
+
+  const vit = 2 + for_ + cons;
+  const ener = 5 + for_ + cons;
+  const sang = 2 * vit;
+  const medo = 10;
+
+  document.getElementById('vit-total').textContent = vit;
+  document.getElementById('ener-total').textContent = ener;
+  document.getElementById('sang-total').textContent = sang;
+  document.getElementById('medo-total').textContent = medo;
+
+  // Iniciativa = agilidade
+  document.getElementById('inic-val').textContent = agil;
+  // Deslocamento
+  document.getElementById('desl-1').textContent = 10 + agil;
+  document.getElementById('desl-2').textContent = (10 + agil) * 2;
+
+  recalcAtual();
+  updateRadar();
+  updateAllComps();
+}
+
+function recalcAtual() {
+  const ids = ['vit','ener','sang','medo'];
+  ids.forEach(id => {
+    const total = parseInt(document.getElementById(id+'-total').textContent)||0;
+    const perd  = parseInt(document.getElementById(id+'-perd').value)||0;
+    const atual = Math.max(0, total - perd);
+    document.getElementById(id+'-atual').textContent = atual;
+    const pct = total > 0 ? (atual/total)*100 : 0;
+    document.getElementById('bar-'+id).style.width = pct + '%';
+  });
+}
+
+/* ── RADAR ── */
+function updateRadar() {
+  const MAX = 8;
+  const cx = 130, cy = 130;
+  const r = 80; // max radius
+  const vals = [
+    parseInt(document.getElementById('attr-agil').value)||0,
+    parseInt(document.getElementById('attr-cons').value)||0,
+    parseInt(document.getElementById('attr-conh').value)||0,
+    parseInt(document.getElementById('attr-for').value)||0,
+    parseInt(document.getElementById('attr-int').value)||0,
+  ];
+  // angles: top, upper-right, lower-right, bottom, lower-left, upper-left
+  // 5 axes: Agil(top=270°), Cons(right=342°), Conh(right-low=54°), For(bottom=126°), Int(left=198°)
+  const angles = [-90, -90+72, -90+144, -90+216, -90+288];
+  const pts = vals.map((v,i) => {
+    const frac = Math.min(v, MAX) / MAX;
+    const a = angles[i] * Math.PI / 180;
+    const dist = frac * r;
+    return [cx + dist*Math.cos(a), cy + dist*Math.sin(a)];
+  });
+  const poly = pts.map(p => p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  document.getElementById('radar-poly').setAttribute('points', poly);
+}
+
+/* ── INJURY ── */
+const injuryStyle = {
+  'Nenhum':    null,
+  'Cortado':   { fill:'rgba(160,20,20,0.55)', stroke:'#b82020' },
+  'Machucado': { fill:'rgba(140,60,10,0.5)',  stroke:'#a04808' },
+  'Fraturado': { fill:'rgba(100,20,100,0.5)', stroke:'#782078' },
+  'Mutilado':  { fill:'rgba(15,0,0,0.88)',    stroke:'#ff0000', glow:true },
+};
+function updateInjury(part, cond) {
+  const sec = document.getElementById('sec-'+part);
+  if (cond === 'Nenhum') { sec.classList.remove('injured'); }
+  else { sec.classList.add('injured'); }
+  const style = injuryStyle[cond];
+  document.querySelectorAll('[data-part="'+part+'"]').forEach(el => {
+    if (!style) {
+      el.style.fill = ''; el.style.stroke = '#3a3020'; el.style.filter = '';
+    } else {
+      el.style.fill = style.fill;
+      el.style.stroke = style.stroke;
+      el.style.filter = style.glow ? 'url(#glow-red2)' : '';
+    }
+  });
+}
+
+/* ── INVENTÁRIO ROWS ── */
+(function buildInv() {
+  const tb = document.getElementById('inv-body');
+  for (let i=0;i<10;i++) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><input class="i-input" type="text" placeholder="—"></td><td><input class="i-input" type="number" value="1" style="width:45px;text-align:center;"></td><td><input class="i-input" type="text" placeholder="—"></td><td><input class="i-input" type="number" value="0" style="width:40px;text-align:center;"></td>`;
+    tb.appendChild(tr);
+  }
+})();
+
+/* ── HABILIDADES ROWS ── */
+(function buildHab() {
+  const tb = document.getElementById('hab-body');
+  for (let i=0;i<8;i++) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><input class="h-input" type="text" placeholder="—"></td><td><input class="h-input" type="number" value="0" style="width:60px;text-align:center;"></td><td><input class="h-input" type="number" value="0" style="width:60px;text-align:center;"></td><td><input class="h-input" type="text" placeholder="—" style="width:80px;text-align:center;"></td><td><input class="h-input" type="text" placeholder="Descrição do efeito..."></td>`;
+    tb.appendChild(tr);
+  }
+})();
+
+/* ════════════════════════════════════════
+   SAVE / LOAD / SHARE SYSTEM
+   ════════════════════════════════════════ */
+
+const STORE_KEY = 'ndm_chars';
+const ACTIVE_KEY = 'ndm_active';
+let activeId = null;
+let saveTimer = null;
+
+/* ── COLLECT all field values into an object ── */
+function collectData() {
+  const d = {};
+  // inputs & selects by id
+  const ids = [
+    'xp-total','attr-agil','attr-cons','attr-conh','attr-for','attr-int',
+    'vit-perd','ener-perd','sang-perd','medo-perd','dinheiro'
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) d[id] = el.value;
+  });
+  // named inputs (ident panel)
+  const namedInputs = document.querySelectorAll('.field-input, .field-select');
+  d._ident = Array.from(namedInputs).map(el => el.value || el.options?.[el.selectedIndex]?.value || '');
+  // attributes
+  d._attrs = ['agil','cons','conh','for','int'].map(a => document.getElementById('attr-'+a)?.value||'1');
+  // competencias
+  d._comps = Array.from(document.querySelectorAll('[data-idx]')).map(el => el.value);
+  d._compm = Array.from(document.querySelectorAll('[data-modif]')).map(el => el.value);
+  // conditions (saude)
+  const condSelects = document.querySelectorAll('.cond-select');
+  d._conds = Array.from(condSelects).map(el => el.value);
+  // arm values in saude
+  const armInputs = document.querySelectorAll('.arm-val-s');
+  d._arms = Array.from(armInputs).map(el => el.value);
+  // armor central
+  const armorInputs = document.querySelectorAll('.armor-input');
+  d._armor = Array.from(armorInputs).map(el => el.value);
+  // qualidades/defeitos contenteditable
+  const qd = document.querySelectorAll('.qd-item');
+  d._qd = Array.from(qd).map(el => el.textContent);
+  // weapons
+  const wTrs = document.querySelectorAll('#weapons-body tr');
+  d._weapons = Array.from(wTrs).map(tr => Array.from(tr.querySelectorAll('input,select')).map(el => el.value));
+  // inventory
+  const invTrs = document.querySelectorAll('#inv-body tr');
+  d._inv = Array.from(invTrs).map(tr => Array.from(tr.querySelectorAll('input')).map(el => el.value));
+  // habilidades
+  const habTrs = document.querySelectorAll('#hab-body tr');
+  d._hab = Array.from(habTrs).map(tr => Array.from(tr.querySelectorAll('input')).map(el => el.value));
+  // espacos
+  const espInputs = document.querySelectorAll('.stat-box-val.editable');
+  d._esp = Array.from(espInputs).map(el => el.value);
+  // talento selects
+  const talSelects = document.querySelectorAll('#talentos-list select');
+  d._tal = Array.from(talSelects).map(el => el.value);
+  return d;
+}
+
+/* ── APPLY saved data to DOM ── */
+function applyData(d) {
+  if (!d) return;
+  const ids = [
+    'xp-total','attr-agil','attr-cons','attr-conh','attr-for','attr-int',
+    'vit-perd','ener-perd','sang-perd','medo-perd','dinheiro'
+  ];
+  ids.forEach(id => { if (d[id] !== undefined) { const el = document.getElementById(id); if(el) el.value = d[id]; } });
+
+  if (d._ident) {
+    const els = document.querySelectorAll('.field-input, .field-select');
+    d._ident.forEach((v,i) => { if(els[i]) { if(els[i].tagName==='SELECT'){[...els[i].options].forEach(o=>o.selected=o.value===v);} else els[i].value=v; } });
+  }
+  if (d._conds) {
+    const condSelects = document.querySelectorAll('.cond-select');
+    d._conds.forEach((v,i) => {
+      if (condSelects[i]) {
+        condSelects[i].value = v;
+        const part = condSelects[i].getAttribute('onchange').match(/'([^']+)'/)?.[1];
+        if (part) updateInjury(part, v);
+      }
+    });
+  }
+  if (d._arms) { const els = document.querySelectorAll('.arm-val-s'); d._arms.forEach((v,i)=>{if(els[i])els[i].value=v;}); }
+  if (d._armor) { const els = document.querySelectorAll('.armor-input'); d._armor.forEach((v,i)=>{if(els[i])els[i].value=v;}); }
+  if (d._qd) { const els = document.querySelectorAll('.qd-item'); d._qd.forEach((v,i)=>{if(els[i])els[i].textContent=v;}); }
+  if (d._comps) { const els = document.querySelectorAll('[data-idx]'); d._comps.forEach((v,i)=>{if(els[i])els[i].value=v;}); }
+  if (d._compm) { const els = document.querySelectorAll('[data-modif]'); d._compm.forEach((v,i)=>{if(els[i])els[i].value=v;}); }
+  if (d._weapons) {
+    const trs = document.querySelectorAll('#weapons-body tr');
+    d._weapons.forEach((row,i)=>{ if(trs[i]) { const inps=trs[i].querySelectorAll('input,select'); row.forEach((v,j)=>{if(inps[j])inps[j].value=v;}); } });
+  }
+  if (d._inv) {
+    const trs = document.querySelectorAll('#inv-body tr');
+    d._inv.forEach((row,i)=>{ if(trs[i]) { const inps=trs[i].querySelectorAll('input'); row.forEach((v,j)=>{if(inps[j])inps[j].value=v;}); } });
+  }
+  if (d._hab) {
+    const trs = document.querySelectorAll('#hab-body tr');
+    d._hab.forEach((row,i)=>{ if(trs[i]) { const inps=trs[i].querySelectorAll('input'); row.forEach((v,j)=>{if(inps[j])inps[j].value=v;}); } });
+  }
+  if (d._esp) { const els = document.querySelectorAll('.stat-box-val.editable'); d._esp.forEach((v,i)=>{if(els[i])els[i].value=v;}); }
+  if (d._tal) { const els = document.querySelectorAll('#talentos-list select'); d._tal.forEach((v,i)=>{if(els[i])els[i].value=v;}); }
+  recalc();
+}
+
+/* ── STORAGE HELPERS ── */
+function getChars() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveChars(chars) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(chars));
+}
+function getCharName() {
+  const el = document.querySelector('.field-input');
+  return (el && el.value.trim()) ? el.value.trim() : 'Sem nome';
+}
+
+/* ── SAVE NOW ── */
+function saveNow() {
+  const chars = getChars();
+  const data = collectData();
+  data._name = getCharName();
+  data._saved = new Date().toLocaleTimeString('pt-BR');
+  chars[activeId] = data;
+  saveChars(chars);
+  localStorage.setItem(ACTIVE_KEY, activeId);
+  updateStatus('Salvo às ' + data._saved, 'ok');
+  updateCharSelect();
+  showToast('Ficha salva!');
+}
+
+/* ── AUTO SAVE (debounced) ── */
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  updateStatus('Editando...', '');
+  saveTimer = setTimeout(saveNow, 2000);
+}
+
+/* ── STATUS ── */
+function updateStatus(msg, cls) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg;
+  el.className = 'save-status' + (cls ? ' '+cls : '');
+}
+
+/* ── CHAR SELECT DROPDOWN ── */
+function updateCharSelect() {
+  const chars = getChars();
+  const sel = document.getElementById('char-select');
+  sel.innerHTML = '';
+  Object.entries(chars).forEach(([id, d]) => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = d._name || 'Sem nome';
+    if (id === activeId) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+/* ── SWITCH CHAR ── */
+function switchChar(id) {
+  saveNow();
+  activeId = id;
+  localStorage.setItem(ACTIVE_KEY, id);
+  const chars = getChars();
+  applyData(chars[id]);
+  updateStatus('Carregado', 'ok');
+}
+
+/* ── NEW CHAR ── */
+function newChar() {
+  saveNow();
+  const id = 'char_' + Date.now();
+  activeId = id;
+  // clear all fields
+  document.querySelectorAll('.field-input').forEach(el => el.value = '');
+  document.querySelectorAll('.field-select').forEach(el => el.selectedIndex = 0);
+  ['attr-agil','attr-cons','attr-conh','attr-for','attr-int'].forEach(id2 => { const el=document.getElementById(id2); if(el)el.value=1; });
+  ['vit-perd','ener-perd','sang-perd','medo-perd'].forEach(id2 => { const el=document.getElementById(id2); if(el)el.value=0; });
+  document.querySelectorAll('.cond-select').forEach(el => { el.value='Nenhum'; const part=el.getAttribute('onchange').match(/'([^']+)'/)?.[1]; if(part)updateInjury(part,'Nenhum'); });
+  document.querySelectorAll('.arm-val-s').forEach(el=>el.value=0);
+  document.querySelectorAll('.armor-input').forEach(el=>el.value=0);
+  document.querySelectorAll('.qd-item').forEach(el=>el.textContent='Nenhum');
+  document.querySelectorAll('[data-idx],[data-modif]').forEach(el=>el.value=0);
+  document.querySelectorAll('#weapons-body input').forEach(el=>el.value='');
+  document.querySelectorAll('#inv-body input').forEach(el=>el.value='');
+  document.querySelectorAll('#hab-body input').forEach(el=>el.value='');
+  if(document.getElementById('dinheiro'))document.getElementById('dinheiro').value=0;
+  recalc();
+  saveNow();
+  updateCharSelect();
+  showToast('Nova ficha criada!');
+}
+
+/* ── DELETE CHAR ── */
+function deleteChar() {
+  const chars = getChars();
+  const keys = Object.keys(chars);
+  if (keys.length <= 1) { showToast('Nao e possivel apagar a unica ficha.'); return; }
+  if (!confirm('Apagar esta ficha permanentemente?')) return;
+  delete chars[activeId];
+  saveChars(chars);
+  activeId = Object.keys(chars)[0];
+  localStorage.setItem(ACTIVE_KEY, activeId);
+  applyData(chars[activeId]);
+  updateCharSelect();
+  showToast('Ficha apagada.');
+}
+
+/* ── SHARE ── */
+function openShareModal() {
+  saveNow();
+  const data = collectData();
+  const json = JSON.stringify(data);
+  const b64 = btoa(encodeURIComponent(json));
+  const url = window.location.origin + window.location.pathname + '?ficha=' + b64;
+  document.getElementById('share-url').textContent = url;
+  document.getElementById('share-modal').classList.add('show');
+}
+function closeShareModal() { document.getElementById('share-modal').classList.remove('show'); }
+function copyShareUrl() {
+  const url = document.getElementById('share-url').textContent;
+  navigator.clipboard.writeText(url).then(() => showToast('Link copiado!')).catch(() => {
+    const el = document.getElementById('share-url');
+    const range = document.createRange(); range.selectNode(el);
+    window.getSelection().removeAllRanges(); window.getSelection().addRange(range);
+    document.execCommand('copy'); showToast('Link copiado!');
+  });
+}
+
+/* ── TOAST ── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+/* ── LOAD FROM URL (shared link) ── */
+function loadFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const fichaParam = params.get('ficha');
+  if (!fichaParam) return false;
+  try {
+    const json = decodeURIComponent(atob(fichaParam));
+    const data = JSON.parse(json);
+    // Save as new char
+    const id = 'char_' + Date.now();
+    data._name = (data._name || 'Compartilhada') + ' (recebida)';
+    const chars = getChars();
+    chars[id] = data;
+    saveChars(chars);
+    activeId = id;
+    localStorage.setItem(ACTIVE_KEY, id);
+    applyData(data);
+    updateCharSelect();
+    updateStatus('Ficha recebida!', 'ok');
+    showToast('Ficha carregada do link!');
+    // Clean URL
+    window.history.replaceState({}, '', window.location.pathname);
+    return true;
+  } catch(e) { console.warn('Erro ao carregar ficha do link:', e); return false; }
+}
+
+/* ── INIT WITH PERSISTENCE ── */
+(function init() {
+  // check URL share first
+  const fromUrl = loadFromUrl();
+  if (!fromUrl) {
+    // load from localStorage
+    let chars = getChars();
+    let saved = localStorage.getItem(ACTIVE_KEY);
+    if (Object.keys(chars).length === 0) {
+      // first time — create default char
+      activeId = 'char_' + Date.now();
+      chars[activeId] = { _name: 'Meu Personagem' };
+      saveChars(chars);
+    } else {
+      activeId = (saved && chars[saved]) ? saved : Object.keys(chars)[0];
+    }
+    applyData(chars[activeId]);
+  }
+  updateCharSelect();
+  updateStatus('Pronto', 'ok');
+
+  // auto-save on any input change
+  document.addEventListener('input', scheduleSave);
+  document.addEventListener('change', scheduleSave);
+})();
+
+/* ── INIT ── */
+recalc();
+</script>
+</body>
+</html>
