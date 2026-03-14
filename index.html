@@ -277,6 +277,33 @@ body {
 .bar-sang .bar-fill { background:linear-gradient(90deg,#450a0a,#dc2626); }
 .bar-medo .bar-fill { background:linear-gradient(90deg,#2e1065,#7c3aed); }
 
+/* ── DANGER GLOW ANIMATION ── */
+@keyframes danger-pulse-vit {
+  0%,100% { text-shadow: 0 0 6px #16a34a, 0 0 14px #16a34a; color:#4ade80; }
+  50%      { text-shadow: 0 0 14px #dc2626, 0 0 30px #dc2626, 0 0 50px #991b1b; color:#ff4444; }
+}
+@keyframes danger-pulse-ener {
+  0%,100% { text-shadow: 0 0 6px #2563eb, 0 0 14px #2563eb; color:#60a5fa; }
+  50%      { text-shadow: 0 0 14px #dc2626, 0 0 30px #dc2626, 0 0 50px #991b1b; color:#ff4444; }
+}
+@keyframes danger-pulse-sang {
+  0%,100% { text-shadow: 0 0 6px #dc2626, 0 0 14px #dc2626; color:#f87171; }
+  50%      { text-shadow: 0 0 14px #ff0000, 0 0 30px #ff0000, 0 0 50px #cc0000; color:#ff2222; }
+}
+@keyframes danger-pulse-medo {
+  0%,100% { text-shadow: 0 0 6px #7c3aed, 0 0 14px #7c3aed; color:#c084fc; }
+  50%      { text-shadow: 0 0 14px #dc2626, 0 0 30px #dc2626, 0 0 50px #991b1b; color:#ff4444; }
+}
+@keyframes danger-row-pulse {
+  0%,100% { background: rgba(127,29,29,0.15); }
+  50%      { background: rgba(220,38,38,0.35); }
+}
+.danger-vit  { animation: danger-pulse-vit  1.4s ease-in-out infinite; }
+.danger-ener { animation: danger-pulse-ener 1.4s ease-in-out infinite; }
+.danger-sang { animation: danger-pulse-sang 1.4s ease-in-out infinite; }
+.danger-medo { animation: danger-pulse-medo 1.4s ease-in-out infinite; }
+.danger-row  { animation: danger-row-pulse  1.4s ease-in-out infinite; }
+
 /* ── COMPETÊNCIAS ── */
 .comp-table { width:100%; border-collapse:collapse; }
 .comp-table th {
@@ -909,9 +936,9 @@ body {
       <tbody>
         <tr>
           <td class="en-label">Total</td>
-          <td class="en-vit"><span class="vit-val" id="vit-total" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">4</span></td>
+          <td class="en-vit"><span class="vit-val" id="vit-total" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">9</span></td>
           <td class="en-ener"><span class="ener-val" id="ener-total" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">7</span></td>
-          <td class="en-sang"><span class="sang-val" id="sang-total" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">8</span></td>
+          <td class="en-sang"><span class="sang-val" id="sang-total" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">18</span></td>
           <td class="en-medo"><span class="medo-val" id="medo-total" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">10</span></td>
         </tr>
         <tr>
@@ -923,9 +950,9 @@ body {
         </tr>
         <tr>
           <td class="en-label">Atual</td>
-          <td class="en-vit"><span class="vit-val" id="vit-atual" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">4</span></td>
+          <td class="en-vit"><span class="vit-val" id="vit-atual" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">9</span></td>
           <td class="en-ener"><span class="ener-val" id="ener-atual" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">7</span></td>
-          <td class="en-sang"><span class="sang-val" id="sang-atual" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">8</span></td>
+          <td class="en-sang"><span class="sang-val" id="sang-atual" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">18</span></td>
           <td class="en-medo"><span class="medo-val" id="medo-atual" style="font-family:'Share Tech Mono',monospace;font-size:17px;font-weight:700;">10</span></td>
         </tr>
       </tbody>
@@ -960,24 +987,97 @@ body {
     <div>
       <div class="sec-head"><div class="sec-line"></div><span class="sec-title">Atributos</span><div class="sec-line r"></div></div>
       <div class="panel radar-container">
-        <svg id="radar-svg" viewBox="0 0 260 260" width="240" height="240">
-          <polygon class="r-grid" style="fill:none;stroke:#2a1f3a;stroke-width:1;" points="130,50 188,84 188,176 130,210 72,176 72,84"/>
-          <polygon class="r-grid" style="fill:none;stroke:#2a1f3a;stroke-width:1;" points="130,70 172,94 172,166 130,190 88,166 88,94"/>
-          <polygon class="r-grid" style="fill:none;stroke:#2a1f3a;stroke-width:1;" points="130,90 156,104 156,156 130,170 104,156 104,104"/>
-          <polygon class="r-grid" style="fill:none;stroke:#2a1f3a;stroke-width:1;" points="130,110 140,114 140,146 130,150 120,146 120,114"/>
-          <line style="stroke:#2a1f3a;stroke-width:1;" x1="130" y1="130" x2="130" y2="46"/>
-          <line style="stroke:#2a1f3a;stroke-width:1;" x1="130" y1="130" x2="190" y2="82"/>
-          <line style="stroke:#2a1f3a;stroke-width:1;" x1="130" y1="130" x2="190" y2="178"/>
-          <line style="stroke:#2a1f3a;stroke-width:1;" x1="130" y1="130" x2="130" y2="214"/>
-          <line style="stroke:#2a1f3a;stroke-width:1;" x1="130" y1="130" x2="70" y2="178"/>
-          <line style="stroke:#2a1f3a;stroke-width:1;" x1="130" y1="130" x2="70" y2="82"/>
-          <polygon id="radar-poly" style="fill:rgba(107,33,168,0.2);stroke:#9333ea;stroke-width:1.5;" points="130,110 140,114 140,146 130,150 120,146 120,114"/>
-          <text style="font-family:'Cinzel',serif;font-size:9px;fill:#5c4f78;" x="130" y="38" text-anchor="middle">AGILIDADE</text>
-          <text style="font-family:'Cinzel',serif;font-size:9px;fill:#5c4f78;" x="198" y="80" text-anchor="start">CONST.</text>
-          <text style="font-family:'Cinzel',serif;font-size:9px;fill:#5c4f78;" x="198" y="186" text-anchor="start">CONH.</text>
-          <text style="font-family:'Cinzel',serif;font-size:9px;fill:#5c4f78;" x="130" y="226" text-anchor="middle">FORÇA</text>
-          <text style="font-family:'Cinzel',serif;font-size:9px;fill:#5c4f78;" x="62" y="186" text-anchor="end">INT.</text>
-          <circle cx="130" cy="130" r="2" fill="#3d2d55"/>
+        <svg id="radar-svg" viewBox="0 0 260 260" width="260" height="260">
+          <defs>
+            <radialGradient id="radar-bg-g" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#1a0505" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#0a0404" stop-opacity="0.2"/>
+            </radialGradient>
+            <filter id="radar-glow">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="label-glow">
+              <feGaussianBlur stdDeviation="1.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Background fill -->
+          <polygon points="130.0,46.0 209.9,104.0 179.4,198.0 80.6,198.0 50.1,104.0" fill="url(#radar-bg-g)" stroke="none"/>
+
+          <!-- Grid rings — 4 levels -->
+          <!-- Outermost ring -->
+          <polygon points="130.0,46.0 209.9,104.0 179.4,198.0 80.6,198.0 50.1,104.0" fill="none" stroke="#4a1a1a" stroke-width="1.2" stroke-dasharray="4,3"/>
+          <!-- 75% ring -->
+          <polygon points="130.0,67.0 189.9,110.5 167.0,181.0 93.0,181.0 70.1,110.5" fill="none" stroke="#3b1212" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- 50% ring -->
+          <polygon points="130.0,88.0 169.9,117.0 154.7,164.0 105.3,164.0 90.1,117.0" fill="none" stroke="#2e0e0e" stroke-width="1" stroke-dasharray="3,4"/>
+          <!-- 25% ring -->
+          <polygon points="130.0,109.0 150.0,123.5 142.3,147.0 117.7,147.0 110.0,123.5" fill="none" stroke="#240c0c" stroke-width="0.8" stroke-dasharray="2,4"/>
+
+          <!-- Axis lines -->
+          <line stroke="#3b1212" stroke-width="1" stroke-dasharray="2,3" x1="130" y1="130" x2="130.0" y2="46.0"/>
+          <line stroke="#3b1212" stroke-width="1" stroke-dasharray="2,3" x1="130" y1="130" x2="209.9" y2="104.0"/>
+          <line stroke="#3b1212" stroke-width="1" stroke-dasharray="2,3" x1="130" y1="130" x2="179.4" y2="198.0"/>
+          <line stroke="#3b1212" stroke-width="1" stroke-dasharray="2,3" x1="130" y1="130" x2="80.6" y2="198.0"/>
+          <line stroke="#3b1212" stroke-width="1" stroke-dasharray="2,3" x1="130" y1="130" x2="50.1" y2="104.0"/>
+
+          <!-- Ring value labels (1, 5, 10, 15 at 25/50/75/100%) -->
+          <text x="133" y="113" fill="#6e2020" font-family="'Share Tech Mono',monospace" font-size="7" opacity="0.7">5</text>
+          <text x="133" y="92" fill="#6e2020" font-family="'Share Tech Mono',monospace" font-size="7" opacity="0.7">10</text>
+          <text x="133" y="71" fill="#6e2020" font-family="'Share Tech Mono',monospace" font-size="7" opacity="0.7">15</text>
+          <text x="133" y="50" fill="#8b2a2a" font-family="'Share Tech Mono',monospace" font-size="7" opacity="0.8">20</text>
+
+          <!-- Data polygon — filled with glow -->
+          <polygon id="radar-poly"
+            fill="rgba(139,0,0,0.18)"
+            stroke="#c0392b"
+            stroke-width="2"
+            stroke-linejoin="round"
+            filter="url(#radar-glow)"
+            points="130.0,109.0 150.0,123.5 142.3,147.0 117.7,147.0 110.0,123.5"/>
+
+          <!-- Data polygon inner highlight -->
+          <polygon id="radar-poly-inner"
+            fill="rgba(192,57,43,0.06)"
+            stroke="rgba(232,96,76,0.4)"
+            stroke-width="0.8"
+            stroke-linejoin="round"
+            points="130.0,109.0 150.0,123.5 142.3,147.0 117.7,147.0 110.0,123.5"/>
+
+          <!-- Vertex dots -->
+          <circle id="rdot-0" cx="130.0" cy="46.0" r="0" fill="#e8604c" filter="url(#radar-glow)"/>
+          <circle id="rdot-1" cx="209.9" cy="104.0" r="0" fill="#e8604c" filter="url(#radar-glow)"/>
+          <circle id="rdot-2" cx="179.4" cy="198.0" r="0" fill="#e8604c" filter="url(#radar-glow)"/>
+          <circle id="rdot-3" cx="80.6" cy="198.0" r="0" fill="#e8604c" filter="url(#radar-glow)"/>
+          <circle id="rdot-4" cx="50.1" cy="104.0" r="0" fill="#e8604c" filter="url(#radar-glow)"/>
+
+          <!-- Center dot -->
+          <circle cx="130" cy="130" r="3" fill="#8b0000" opacity="0.8"/>
+          <circle cx="130" cy="130" r="1.5" fill="#e8604c"/>
+
+          <!-- Attribute labels with background boxes -->
+          <!-- AGILIDADE — top -->
+          <rect x="97" y="22" width="66" height="16" rx="2" fill="#0a0404" stroke="#4a1a1a" stroke-width="0.8" opacity="0.9"/>
+          <text x="130" y="33" text-anchor="middle" fill="#c0392b" font-family="'Cinzel',serif" font-size="8.5" font-weight="700" letter-spacing="1.5" filter="url(#label-glow)">AGILIDADE</text>
+
+          <!-- CONSTITUIÇÃO — upper right -->
+          <rect x="175" y="62" width="68" height="16" rx="2" fill="#0a0404" stroke="#4a1a1a" stroke-width="0.8" opacity="0.9"/>
+          <text x="209" y="73" text-anchor="middle" fill="#c0392b" font-family="'Cinzel',serif" font-size="8.5" font-weight="700" letter-spacing="1" filter="url(#label-glow)">CONSTITUIÇÃO</text>
+
+          <!-- CONHECIMENTO — lower right -->
+          <rect x="171" y="175" width="72" height="16" rx="2" fill="#0a0404" stroke="#4a1a1a" stroke-width="0.8" opacity="0.9"/>
+          <text x="207" y="186" text-anchor="middle" fill="#c0392b" font-family="'Cinzel',serif" font-size="8.5" font-weight="700" letter-spacing="1" filter="url(#label-glow)">CONHECIMENTO</text>
+
+          <!-- FORÇA — bottom -->
+          <rect x="101" y="218" width="58" height="16" rx="2" fill="#0a0404" stroke="#4a1a1a" stroke-width="0.8" opacity="0.9"/>
+          <text x="130" y="229" text-anchor="middle" fill="#c0392b" font-family="'Cinzel',serif" font-size="8.5" font-weight="700" letter-spacing="1.5" filter="url(#label-glow)">FORÇA</text>
+
+          <!-- INTELECTO — left -->
+          <rect x="14" y="175" width="62" height="16" rx="2" fill="#0a0404" stroke="#4a1a1a" stroke-width="0.8" opacity="0.9"/>
+          <text x="45" y="186" text-anchor="middle" fill="#c0392b" font-family="'Cinzel',serif" font-size="8.5" font-weight="700" letter-spacing="1.5" filter="url(#label-glow)">INTELECTO</text>
+
         </svg>
       </div>
 
@@ -1300,7 +1400,7 @@ body {
         <tr>
           <th style="text-align:left;width:170px;">Nome</th>
           <th style="width:80px;">Custo</th>
-          <th style="width:80px;">Medo</th>
+          <th style="width:80px;">Dano</th>
           <th style="width:100px;">Resfriamento</th>
           <th>Descrição / Efeito</th>
         </tr>
@@ -1411,7 +1511,7 @@ function updateAllComps() { competencias.forEach((_,i)=>updateComp(i)); }
 function recalc() {
   const for_ = getAttr('for'), cons = getAttr('cons');
   const agil = getAttr('agil');
-  const vit = 2 + for_ + cons;
+  const vit = 7 + for_ + cons;
   const ener = 5 + for_ + cons;
   const sang = 2 * vit;
   const medo = 10;
@@ -1436,22 +1536,66 @@ function recalcAtual() {
     const total = parseInt(document.getElementById(id+'-total').textContent)||0;
     const perd  = parseInt(document.getElementById(id+'-perd').value)||0;
     const atual = Math.max(0, total - perd);
+    const pct   = total > 0 ? atual / total : 0;
+
     document.getElementById(id+'-atual').textContent = atual;
-    document.getElementById('bar-'+id).style.width = (total>0?(atual/total)*100:0) + '%';
+    document.getElementById('bar-'+id).style.width = (pct*100) + '%';
+
+    // Danger glow: <= 25% triggers animation
+    const danger = pct <= 0.25 && total > 0;
+    const dangerClass = 'danger-' + id;
+
+    // Apply to the "atual" span and the table row cells
+    const atualEl = document.getElementById(id+'-atual');
+    const totalEl = document.getElementById(id+'-total');
+    const perdEl  = document.getElementById(id+'-perd');
+
+    [atualEl, totalEl, perdEl].forEach(el => {
+      if (!el) return;
+      if (danger) el.classList.add(dangerClass);
+      else el.classList.remove(dangerClass);
+    });
+
+    // Also pulse the table row background
+    const rowEls = document.querySelectorAll('.en-' + id);
+    rowEls.forEach(cell => {
+      if (danger) cell.classList.add('danger-row');
+      else cell.classList.remove('danger-row');
+    });
+
+    // Bar color shifts to red when critical
+    const bar = document.getElementById('bar-'+id);
+    if (bar) {
+      if (pct <= 0.25 && total > 0) {
+        bar.style.background = 'linear-gradient(90deg,#450a0a,#dc2626)';
+        bar.style.boxShadow  = '0 0 8px rgba(220,38,38,0.6)';
+      } else {
+        bar.style.boxShadow = '';
+        bar.style.background = '';
+      }
+    }
   });
 }
 
 /* ── RADAR ── */
 function updateRadar() {
-  const MAX=8, cx=130, cy=130, r=80;
+  const MAX=20, cx=130, cy=130, r=84;
   const vals = ['agil','cons','conh','for','int'].map(a=>getAttr(a));
   const angles = [-90,-18,54,126,198];
   const pts = vals.map((v,i) => {
-    const frac = Math.min(v,MAX)/MAX;
+    const frac = Math.min(Math.max(v,0),MAX)/MAX;
     const a = angles[i]*Math.PI/180;
     return [(cx+frac*r*Math.cos(a)).toFixed(1),(cy+frac*r*Math.sin(a)).toFixed(1)];
   });
-  document.getElementById('radar-poly').setAttribute('points', pts.map(p=>p.join(',')).join(' '));
+  const ptStr = pts.map(p=>p.join(',')).join(' ');
+  document.getElementById('radar-poly').setAttribute('points', ptStr);
+  const inner = document.getElementById('radar-poly-inner');
+  if(inner) inner.setAttribute('points', ptStr);
+  // Update vertex dots
+  pts.forEach((p,i) => {
+    const dot = document.getElementById('rdot-'+i);
+    if(dot){ dot.setAttribute('cx', p[0]); dot.setAttribute('cy', p[1]); dot.setAttribute('r','4'); }
+  });
 }
 
 /* ── INJURY ── */
@@ -1488,7 +1632,7 @@ function updateInjury(part, cond) {
 /* ── BUILD HABILIDADES ── */
 (function buildHab() {
   const tb = document.getElementById('hab-body');
-  for (let i=0;i<8;i++) {
+  for (let i=0;i<16;i++) {
     const tr = document.createElement('tr');
     tr.innerHTML = `<td><input class="h-input" type="text" placeholder="—"></td>
       <td><input class="h-input" type="number" value="0" style="width:60px;text-align:center;"></td>
